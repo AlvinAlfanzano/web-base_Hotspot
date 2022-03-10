@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv="expires" content="-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Internet hotspot - Log in</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://kit.fontawesome.com/a81368914c.js"></script>
+    <script src="/hotspot/md5.js"></script>
+</head>
+
+<body>
+    <div class="voucher">
+        <div class="ie-fixMinHeight">
+            <div class="main">
+                <div class="wrap animated fadeIn">
+                    $(if chap-id)
+                    <form name="sendin" action="$(link-login-only)" method="post">
+                        <input type="hidden" name="username" />
+                        <input type="hidden" name="password" />
+                        <input type="hidden" name="dst" value="$(link-orig)" />
+                        <input type="hidden" name="popup" value="true" />
+                    </form>
+    
+                    <script src="/md5.js"></script>
+                     
+                        <div class="wrapper">
+                            <div class="parallax__group hero-container">
+                              <div class="parallax__layer sun"></div>
+                              <div class="parallax__layer city"></div>
+                              <div class="parallax__layer lax"></div>
+                              <div class="parallax__layer hero-text">
+                                <img class="logo" src="img/LOGO_G11_2-01.png" alt="">
+                                <ul>
+                                  <li><a href="#">Harga</a></li>
+                                  <li><a href="#">Beli Voucher</a></li>
+                                  <li><a href="#" class="btn">Voucher Login</a></li>
+                                </ul>
+                                <div class="year-container">
+                                  <img class="theme" src="img/title-02.svg" alt="">
+                                </div>
+                              </div>
+                            </div>
+                           
+                            <div class="login">
+                              <div class="container">
+                                <div class="forms-container"> 
+                                  <div class="login-barcode">
+
+                                    <div class="containerlog">
+                                      <div class="containerinput">
+                                        <form name="login" action="$(link-login-only)" method="post" $(if chap-id) onSubmit="return doLogin()" $(endif)>
+                                          <input type="hidden" name="dst" value="$(link-orig)" />
+                                          <input type="hidden" name="popup" value="true" />
+                                          <p class="info $(if error)alert$(endif)">
+                                            $(if error == "")Trial? $(if trial == 'yes') <a href="$(link-login-only)?dst=$(link-orig-esc)&amp;username=T-$(mac-esc)">click here</a>.$(endif)
+                                            $(endif)
+                    
+                                            $(if error)$(error)$(endif)
+                                        </p>
+    
+                                          <img id="logolog" src="img/LOGO_G11_2-01.png" alt="logo">
+                                          <h2>Welcome</h2>
+                                          <div id="func" class="inputlog one">
+                                            <div class="i">
+                                              <i class="fas fa-user"></i>
+                                            </div>
+                                            <div>
+                                              <input class="input" name="username" type="text" value="$(username)">
+                                              <h5>Username</h5>
+                                            </div>
+                                        
+                                          </div>
+                                          <div class="inputlog two">
+                                            <div class="i">
+                                              <i class="fas fa-lock"></i>
+                                            </div>
+                                            <div>
+                                              <input class="input" name="password" type="password" >
+                                              <h5>Password</h5>
+                                            </div>
+                                          </div>
+    
+                                          <input type="submit" class="button" value="Connect">
+                                          <script src="/md5.js"></script>
+                                          <script>
+                                              function doLogin() {
+                                                  document.sendin.username.value = document.login.username.value;
+                                                  document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+                                                  document.sendin.submit();
+                                                  return false;
+                                              }
+                          
+                                          </script>
+                                            
+                                        </form>   
+                                      </div>
+                                      <div class="containercode">
+                                        <script src="html5-qrcode.min.js"></script>
+                                        <div style="width: 500px" id="reader"></div>
+                                        <div id="hasil">
+                                          
+                                    
+                                        </div>
+                                        
+                                        <script>
+                                        function onScanSuccess(decodedText, decodedResult) {
+                                          // console.log(`Scan result: ${decodedText}`, decodedResult);
+                                          document.getElementById('hasil').innerHTML = '<button class="button code"><a href="'+decodedText+ decodedResult+'" class="link">Connect</a></button>';
+                                        }
+
+                                        var html5QrcodeScanner = new Html5QrcodeScanner(
+                                          "reader", { fps: 10, qrbox: 250 });
+                                        html5QrcodeScanner.render(onScanSuccess);
+
+                                        </script>
+                                     
+                                    </div> 
+                                    </div> 
+                                    <script src="html5-qrcode.min.js"></script>
+                                  <script src="input.js"></script>
+                                </div>
+                                
+                              </div>
+                                <div class="panel-container">
+                                  <div class="panel left-panel">
+                                    <div class="content">
+                                      <h3>Scan Barcode ?</h3>
+                                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. .</p>
+                                      <button class="btnp transparent" id="barcode-btn">Scan Barcode</button>
+                                    </div>
+                                    <img src="img/login.svg" class="imglog" alt="">
+                                  </div>
+
+                                  <div class="panel right-panel">
+                                    <div class="content">
+                                      <h3>Punya voucher?</h3>
+                                      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. .</p>
+                                      <button class="btnp transparent" id="sign-in-btn">Sign in</button>
+                                    </div>
+                                    <img src="img/barcode.svg" class="imglog" alt="">
+                                  </div>
+                                  <script src="panel.js"></script>
+                                </div>
+                                <script src="panel.js"></script>
+                              </div>
+                              
+                            </div>
+
+                            
+
+
+                        </div>
+                        $(endif)
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
